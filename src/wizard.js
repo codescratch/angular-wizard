@@ -9,7 +9,7 @@ angular.module('mgo-angular-wizard').directive('wizard', function() {
             onCancel: '&',
             onFinish: '&',
             hideIndicators: '=',
-            editMode: '=',
+            editMode: '=?bind',
             name: '@',
             indicatorsPosition: '@?'
         },
@@ -169,7 +169,7 @@ angular.module('mgo-angular-wizard').directive('wizard', function() {
                             $scope.$emit('wizard:stepChanged', {step: step, index: stepIdx(step)});
                             //$log.log('current step number: ', $scope.currentStepNumber());
                         } else {
-                            $scope.$emit('wizard:stepChangeFailed', {step: step, index: _.indexOf($scope.getEnabledSteps(), step)});
+                            $scope.$emit('wizard:stepChangeFailed', {step: step, index: $scope.getEnabledSteps().indexOf(step)});
                         }
                     });
                 }

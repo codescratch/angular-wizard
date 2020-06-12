@@ -1,6 +1,6 @@
 /**
  * Easy to use Wizard library for Angular JS
- * @version v1.1.1 - 2017-06-07 * @link https://github.com/mgonto/angular-wizard
+ * @version v1.1.1.1 - 2020-06-12 * @link https://github.com/mgonto/angular-wizard
  * @author Martin Gontovnikas <martin@gon.to>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -73,7 +73,7 @@ angular.module('mgo-angular-wizard').directive('wizard', function() {
             onCancel: '&',
             onFinish: '&',
             hideIndicators: '=',
-            editMode: '=',
+            editMode: '=?bind',
             name: '@',
             indicatorsPosition: '@?'
         },
@@ -233,7 +233,7 @@ angular.module('mgo-angular-wizard').directive('wizard', function() {
                             $scope.$emit('wizard:stepChanged', {step: step, index: stepIdx(step)});
                             //$log.log('current step number: ', $scope.currentStepNumber());
                         } else {
-                            $scope.$emit('wizard:stepChangeFailed', {step: step, index: _.indexOf($scope.getEnabledSteps(), step)});
+                            $scope.$emit('wizard:stepChangeFailed', {step: step, index: $scope.getEnabledSteps().indexOf(step)});
                         }
                     });
                 }
